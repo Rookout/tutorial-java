@@ -13,7 +13,6 @@
      ```
    2. Start agent and app
         - With Docker `docker-compose up`
-   
         - Without Docker `make -j run-prod`
 
 3. After running the server go to [https://app.rookout.com/](https://app.rookout.com/) and **Log In**
