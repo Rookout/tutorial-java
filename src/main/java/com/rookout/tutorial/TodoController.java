@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @RestController
 public class TodoController {
-    public static final Logger logger = LoggerFactory.getLogger(TodoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
     private TodoStorage todos = TodoStorage.getInstance();
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
