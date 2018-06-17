@@ -18,4 +18,6 @@ public interface ITodoStorage {
      * @return TodoRecord[]
      */
     TodoRecord[] getAll();
+
+    boolean remove(TodoRecord todoRecord);
 }

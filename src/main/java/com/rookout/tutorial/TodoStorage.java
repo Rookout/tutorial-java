@@ -27,6 +27,19 @@ public class TodoStorage implements ITodoStorage {
         todoStorage.add(todoRecordObject);
     }
 
+    public boolean remove(TodoRecord todoRecord) {
+        return todoStorage.remove(todoRecord);
+    }
+
+    public TodoRecord findById(String todoRecordId) {
+        for (TodoRecord record : todoStorage) {
+            if (record.getId().equals(todoRecordId)) {
+                return record;
+            }
+        }
+        return null;
+    }
+
     public TodoRecord[] getAll() {
         return todoStorage.toArray(new TodoRecord[0]);
     }

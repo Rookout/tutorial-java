@@ -65,14 +65,14 @@ $().ready(() => {
             updateTodo(todo) {
                 const action = $.ajax('/todos', {
                     contentType: 'application/json',
-                    method: 'UPDATE',
+                    method: 'PUT',
                     data: JSON.stringify(todo),
                     dataType: 'json',
                 });
                 this.reloadOnFinish(action);
             },
             duplicateTodo(todo) {
-                const action = $.ajax(`/todo/dup/${todo.id}`, {
+                const action = $.ajax(`/todos/dup/${todo.id}`, {
                     method: 'POST'
                 });
                 this.reloadOnFinish(action);
@@ -81,46 +81,34 @@ $().ready(() => {
                 const action = $.ajax(`/todos/${todo.id}`, {
                     method: 'DELETE',
                 });
-
                 this.reloadOnFinish(action);
             },
-            reloadOnFinish(p) {
-                // if (p) {
-                //     console.log("hi");
-                //     p.done((data) => {
-                //         console.log("hi3");
-                //         console.log(data);
-                //         this.reloadTodos()
-                //     // return;
-                // }
-                // // reloadTodos();
+            reloadOnFinish(promise) {
+                promise.done((data) => {
+                    data ? console.log(`got status: ${data.status}`) : null;
+                    return this.reloadTodos();
+                }).catch(console.log);
             },
             reloadTodos() {
                 const vm = this;
                 $.ajax('/todos', {
                     method: 'GET'
                 }).done((todos) => {
-                    // console.log(data);
-                    // const todos = JSON.parse(data);
                     vm.todos = todos;
                 });
             },
             addTodo(text) {
-                let action = $.ajax('/todos', {
+                const action = $.ajax('/todos', {
                     contentType: 'application/json',
                     method: 'POST',
                     data: JSON.stringify({"title": text}),
-                    dataType: 'json',
-                }).done((data) => {
-                    console.log("data", data);
-                    this.reloadOnFinish(action);
-                }).fail((err) => {
-                    console.log("err", err);
+                    dataType: 'json'
                 });
 
+                this.reloadOnFinish(action);
             },
             onAddTodoPressed(e) {
-                if (e.keyCode != 13) return;
+                if (e.keyCode !== 13) return;
                 const title = this.newTodoTitle;
                 this.addTodo(title);
                 this.newTodoTitle = '';

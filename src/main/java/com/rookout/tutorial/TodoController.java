@@ -1,14 +1,13 @@
 package com.rookout.tutorial;
 
-import jdk.jfr.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -26,16 +25,64 @@ public class TodoController {
         newTodoRecord.setId(UUID.randomUUID().toString());
         logger.info("Adding a new todo: {}", newTodoRecord);
         todos.add(newTodoRecord);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.valueOf("text/html"));
-        return new ResponseEntity<>("{\"status\": \"ok\"}", HttpStatus.OK);
+        Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/todos", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateTodo(@RequestBody TodoRecord updatingTodoRecord) {
+        TodoRecord tempTodoRecord = todos.findById(updatingTodoRecord.getId());
+        if (tempTodoRecord != null) {
+            tempTodoRecord.setTitle(updatingTodoRecord.getTitle());
+            tempTodoRecord.setCompleted(updatingTodoRecord.isCompleted());
+            logger.info("Updating Todo record: {}", tempTodoRecord);
+        }
+        Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
 
-//    // @RequestParam binds the value of the query string parameter name into the name parameter of the greeting()
-//    // method. If the name parameter is absent in the request, the defaultValue of "World" is used.
-//    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        return new Greeting(counter.incrementAndGet(), String.format(template, name));
-//    }
+    @RequestMapping(value = "/todos/{todoId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteTodo(@PathVariable("todoId") String todoId) {
+        logger.info("Removing Todo record id: {}", todoId);
+        TodoRecord tempTodoRecord = todos.findById(todoId);
+        if (tempTodoRecord != null) {
+            logger.info("Removing Todo record: {}", tempTodoRecord);
+            todos.remove(tempTodoRecord);
+        }
+        Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
 
+    @RequestMapping(value = "/todos/clear_completed", method = RequestMethod.DELETE)
+    public ResponseEntity<?> clearCompletedTodos() {
+        logger.info("Removing completed todo records");
+        for (TodoRecord todoRecord : todos.getAll()) {
+            if (todoRecord.isCompleted()) {
+                if (todos.remove(todoRecord)) {
+                    logger.info("Removing Todo record: {}", todoRecord);
+                }
+            }
+        }
+        Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/todos/dup/{todoId}", method = RequestMethod.POST)
+    public ResponseEntity<?> duplicateTodo(@PathVariable("todoId") String todoId) {
+        logger.info("Duplicating todo: {}", todoId);
+        TodoRecord tempTodoRecord = todos.findById(todoId);
+        if (tempTodoRecord != null) {
+            TodoRecord newTodoRecord = new TodoRecord(tempTodoRecord);
+            newTodoRecord.setId(UUID.randomUUID().toString());
+            logger.info("Duplicating todo record: {}", tempTodoRecord);
+            todos.add(newTodoRecord);
+        }
+        Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
 }
