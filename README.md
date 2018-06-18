@@ -1,8 +1,8 @@
-# Rookout tutorial java app 
+# Rookout official tutorial for using java 
 
 [![License][license-image]][license-url]
 [![Docs][docs-image]][docs-url]
-[![GitHub version](https://badge.fury.io/gh/rookout%2Ftryme-tutorial.svg)](https://badge.fury.io/gh/rookout%2Ftryme-tutorial)
+[![GitHub version][version-badge]](https://github.com/Rookout/tutorial-java)
 
 this is the official [rookout][rookout-getting-started] java tutorial
 
@@ -11,6 +11,7 @@ this is the official [rookout][rookout-getting-started] java tutorial
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
+- [License](#license)
 
 ## Prerequisites
 
@@ -25,7 +26,7 @@ git clone https://github.com/Rookout/tutorial-java.git
 cd tutorial-java
 ``` 
 
-**Note: you still need `docker` for the agent`**
+**Note: you need `docker` for the agent**
 
 1. Set your agent token in an ENV variable 
 
@@ -91,11 +92,11 @@ make run-docker
     
     
 - Open the file `src/main/java/com/rookout/tutorial/TodoController.java`
-- Add a default (Dump Frame) rule to the `addTodo` function clicking next the the line number in the file viewer
+- Add a default (Dump Frame) rule to the `addTodo` function by clicking next the the line number in the file viewer
 - Looking at the right-hand pane **Rules**, you will see the rule and the line number where you added it - it should be GREEN.
     - If this is not the case, [click here](#rule-common-issues) to see how to fix that
-- Go the the app page [http://localhost:8080/](http://localhost:8080/) and add try to add a task to the todo list
-- Check the bottom pane **Messages** and you'll see the dumpframe you just added, it was triggered by the handler of the web page when you accessed it
+- Go the the app page - [http://localhost:8080/](http://localhost:8080/) and add try to add a task to the todo list
+- Check the bottom pane **Messages** and you'll see the dumpframe you just added- it was triggered by the handler of the web page when you accessed it!
 
 ## Rule Common Issues
 
@@ -119,3 +120,4 @@ or to [our deployment examples][deployment-examples] for platform-specific integ
 [license-image]: https://img.shields.io/badge/License-Apache%202.0-blue.svg
 [rookout-app-url]: https://app.rookout.com/
 [deployment-examples]: https://github.com/Rookout/deployment-examples
+[version-badge]: https://badge.fury.io/gh/rookout%2Ftryme-tutorial.svg
