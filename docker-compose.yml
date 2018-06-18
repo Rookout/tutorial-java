@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   tutorial-java:
     container_name: javatodo
     restart: always
@@ -7,15 +8,15 @@ services:
     environment:
       - ROOKOUT_AGENT_HOST=rookout-python-agent
     ports:
-      - "5000:5000"
+      - "8080:8080"
     links:
       - rookout-python-agent
-#      todo: add golib agent
+
   rookout-python-agent:
-    container_name: rookout-python-agent
+    container_name: rookout-agent
     image: rookout/agent
     environment:
       - ROOKOUT_TOKEN=$ROOKOUT_TOKEN
-      - ROOKOUT_AGENT_TAGS=pytut
+      - ROOKOUT_AGENT_TAGS=$ROOKOUT_AGENT_TAGS
     ports:
       - "7486:7486"
