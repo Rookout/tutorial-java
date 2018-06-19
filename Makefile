@@ -22,7 +22,7 @@ run-docker:
 	docker-compose up
 
 
-build: build-jar-local
+build:
 	docker build --tag rookout/tutorial-java:latest .
 
 upload:

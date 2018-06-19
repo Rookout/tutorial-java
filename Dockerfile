@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM openjdk:8-jdk-alpine
 
 RUN mkdir -p /app/
 
