@@ -39,7 +39,7 @@ jobs:
 
   checkout_code_upver:
     docker:
-      - image: python:2.7
+      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
       - *checkout_default_wd
@@ -64,7 +64,7 @@ jobs:
 
   push_to_docker_hub:
       docker:
-        - image: openjdk:8-jdk-slim
+        - image: circleci/openjdk:8-jdk-browsers
       working_directory: ~/javatut
       steps:
         - *load_cache
