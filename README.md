@@ -20,21 +20,22 @@ this is the official [rookout][rookout-getting-started] java tutorial
 3. gradle - https://gradle.org/install/ (you can skip it and use only docker - including for build)
 
 ## Installation
+**Note: you need `docker` for the agent**
+
+1. Clone this repo
 
 ```bash
 git clone https://github.com/Rookout/tutorial-java.git
 cd tutorial-java
 ``` 
 
-**Note: you need `docker` for the agent**
-
-1. Set your agent token in an ENV variable 
+2. Set your agent token in an ENV variable 
 
 ```bash
 export ROOKOUT_TOKEN=YOUR_TOKEN_IN_HERE
  ```
 
-2. Build the app and run the agent & app
+3. Build the app then run the agent & app
 
 - Building the app without installing gradle:
 
@@ -105,8 +106,8 @@ make run-docker
 
 ## Want to learn more ?
 
-Head over to [our documentation][docs-url] for more specific information
-or to [our deployment examples][deployment-examples] for platform-specific integration examples
+- [Our documentation][docs-url] for more information
+- [our deployment examples][deployment-examples] for platform-specific integration examples
 
 
 ## License
