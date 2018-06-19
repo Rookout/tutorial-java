@@ -27,7 +27,7 @@ build:
 
 upload:
 	@if [ ${CIRCLE_BRANCH} = "master" ]; then \
-		docker push rookout/tutorial-java:latest  \
+		docker push rookout/tutorial-java:latest; \
 	fi
 
 build-and-upload: build upload

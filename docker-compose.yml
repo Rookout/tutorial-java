@@ -4,6 +4,7 @@ services:
   tutorial-java:
     container_name: javatodo
     restart: always
+    image: rookout/tutorial-java
     build: .
     environment:
       - ROOKOUT_AGENT_HOST=rookout-python-agent
