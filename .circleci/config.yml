@@ -52,14 +52,14 @@ jobs:
 
   build_javatut_image:
     docker:
-      - image: openjdk:8-jdk-slim
+      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
       - *load_cache
       - *setup_workspace
       - *setup_make
       - *setup_docker_layer_caching
-      - run: docker run --rm -v "$(shell pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
+      - run: docker run --rm -v "$(pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
       - run: make build
 
   push_to_docker_hub:
