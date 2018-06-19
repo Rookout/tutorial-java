@@ -52,7 +52,7 @@ jobs:
 
   build_javatut_image:
     docker:
-      - image: google/cloud-sdk:latest
+      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
       - *load_cache
@@ -63,7 +63,7 @@ jobs:
 
   push_to_docker_hub:
       docker:
-          - image: google/cloud-sdk:latest
+          - image: circleci/openjdk:8-jdk-browsers
       working_directory: ~/javatut
       steps:
         - *load_cache
