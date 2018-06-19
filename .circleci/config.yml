@@ -23,17 +23,8 @@ references:
     setup_remote_docker:
       docker_layer_caching: true
 
-  setup_build_tools: &setup_build_tools
-   run:
-    command: |
-      mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
-
   setup_make: &setup_make
     run: apt-get update -q && apt-get install --reinstall make
-
-  load_version: &load_version
-    run: cat ~/javatut/workspace/VERSION >> $BASH_ENV
 
   filter_master: &filter_master
     filters:
@@ -53,19 +44,11 @@ jobs:
     steps:
       - *checkout_default_wd
       - *setup_workspace
-      - run: mkdir -p /root/javatut/workspace
       - add_ssh_keys
-      - *setup_build_tools
-      - run: python -m rookout_build_tools.versioning.versions > /root/javatut/workspace/VERSION
-      - *load_version
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/javatut
-      - persist_to_workspace:
-          root: .
-          paths:
-            - workspace/VERSION
 
   build_javatut_image:
     docker:
@@ -73,7 +56,6 @@ jobs:
     working_directory: ~/javatut
     steps:
       - *load_cache
-      - *load_version
       - *setup_workspace
       - *setup_make
       - *setup_docker_layer_caching
@@ -85,7 +67,6 @@ jobs:
       working_directory: ~/javatut
       steps:
         - *load_cache
-        - *load_version
         - *setup_workspace
         - add_ssh_keys
         - *setup_make
