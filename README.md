@@ -1,5 +1,6 @@
 # Rookout official tutorial for using java 
 
+[![CircleCI](https://circleci.com/gh/Rookout/tutorial-java/tree/master.svg?style=svg&circle-token=67fb4681a9af2ce964fd715e45d4c2eafaa01503)](https://circleci.com/gh/Rookout/tutorial-java/tree/master)
 [![License][license-image]][license-url]
 [![Docs][docs-image]][docs-url]
 [![GitHub version][version-badge]](https://github.com/Rookout/tutorial-java)
