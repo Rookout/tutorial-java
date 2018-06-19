@@ -63,7 +63,7 @@ jobs:
 
   push_to_docker_hub:
       docker:
-          - image: circleci/openjdk:8-jdk-browsers
+        - image: circleci/openjdk:8-jdk-browsers
       working_directory: ~/javatut
       steps:
         - *load_cache
