@@ -57,7 +57,7 @@ jobs:
     steps:
       - *load_cache
       - *setup_workspace
-      - *setup_make
+#      - *setup_make
       - *setup_docker_layer_caching
       - run: docker run --rm -v "$(pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
       - run: make build
@@ -70,7 +70,7 @@ jobs:
         - *load_cache
         - *setup_workspace
         - add_ssh_keys
-        - *setup_make
+#        - *setup_make
         - *setup_docker_layer_caching
         - *docker_login
         - run: make upload
