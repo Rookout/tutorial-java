@@ -52,7 +52,7 @@ jobs:
 
   build_javatut_image:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: openjdk:8-jdk-slim
     working_directory: ~/javatut
     steps:
       - *load_cache
@@ -63,7 +63,7 @@ jobs:
 
   push_to_docker_hub:
       docker:
-        - image: circleci/openjdk:8-jdk-browsers
+        - image: openjdk:8-jdk-slim
       working_directory: ~/javatut
       steps:
         - *load_cache
