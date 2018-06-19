@@ -22,5 +22,15 @@ run-docker:
 	docker-compose up
 
 
+build:
+	docker build --tag rookout/tutorial-java:${NEW_VERSION} --tag rookout/tutorial-java:latest .
 
+upload-no-latest:
+	docker push rookout/tutorial-java:${NEW_VERSION}
 
+upload: upload-no-latest
+	@if [ ${CIRCLE_BRANCH} = "master" ]; then \
+		docker push rookout/tutorial-java:latest  \
+	fi
+
+build-and-upload: build upload

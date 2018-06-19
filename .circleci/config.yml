@@ -1,0 +1,107 @@
+version: 3
+
+references:
+  docker_auth: &docker_auth
+    auth:
+      username: _json_key
+      password: $GOOGLE_AUTH
+
+  checkout_default_wd: &checkout_default_wd
+    checkout:
+      path: ~/javatut
+
+  load_cache: &load_cache
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+
+  setup_workspace: &setup_workspace
+    attach_workspace:
+      at: ~/javatut
+
+  setup_docker_layer_caching: &setup_docker_layer_caching
+    setup_remote_docker:
+      docker_layer_caching: true
+
+  setup_build_tools: &setup_build_tools
+   run:
+    command: |
+      mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
+
+  setup_make: &setup_make
+    run: apt-get update -q && apt-get install --reinstall make
+
+  load_version: &load_version
+    run: cat ~/javatut/workspace/VERSION >> $BASH_ENV
+
+  filter_master: &filter_master
+    filters:
+      branches:
+        only: master
+
+  docker_login: &docker_login
+    run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+
+jobs:
+
+  checkout_code_upver:
+    docker:
+      - image: python:2.7
+    working_directory: ~/javatut
+    steps:
+      - *checkout_default_wd
+      - *setup_workspace
+      - run: mkdir -p /root/javatut/workspace
+      - add_ssh_keys
+      - *setup_build_tools
+      - run: python -m rookout_build_tools.versioning.versions > /root/javatut/workspace/VERSION
+      - *load_version
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/javatut
+      - persist_to_workspace:
+          root: .
+          paths:
+            - workspace/VERSION
+
+  build_javatut_image:
+    docker:
+      - image: google/cloud-sdk:latest
+    working_directory: ~/javatut
+    steps:
+      - *load_cache
+      - *load_version
+      - *setup_workspace
+      - *setup_make
+      - *setup_docker_layer_caching
+      - run: make build
+
+  push_to_docker_hub:
+      docker:
+          - image: google/cloud-sdk:latest
+      working_directory: ~/javatut
+      steps:
+        - *load_cache
+        - *load_version
+        - *setup_workspace
+        - add_ssh_keys
+        - *setup_make
+        - *setup_docker_layer_caching
+        - *docker_login
+        - run: make upload
+
+workflows:
+  version: 2
+  deploy-pipeline:
+    jobs:
+      - checkout_code_upver
+      - build_javatut_image:
+          requires:
+            - checkout_code_upver
+      - push_to_docker_hub:
+          requires:
+            - build_javatut_image
+          <<: *filter_master
