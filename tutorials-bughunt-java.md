@@ -5,7 +5,7 @@ The first two will make sure you understand how to create and analyze our defaul
 The third bug will introduce a new rule type - Log. You will be walked through the process of editing the rule in order
 to add custom elements to it.
 
-For more information about Rule Scripting refer to [our reference](rules-index.md)
+For more information about Rule Scripting refer to [our reference](https://docs.rookout.com/docs/rules.html)
 
 ## Bug scenarios
 
@@ -15,7 +15,7 @@ __Level: Beginner__
     <img src="/img/screenshots/python_tutorial_3.png" width="400px" height="310px" />  
 
     - **Debug:**  
-        1. Load the app's code from github / local - as explained [in here](java-getting-started.md#usage) 
+        1. Load the app's code from github / local - as explained [in here](README.md#usage) 
         2. In the [Rookout app](https://app.rookout.com), open the file `src/main/java/com/rookout/tutorial/TodoController.java`  
         ![TodoController.java](/img/screenshots/java-tutorial_1.png)
         3. Add a `dumpframe` rule on the `return` of the `clearCompleted` function by clicking left to the line numbering (just like you would have created a breakpoint on an IDE)  
@@ -47,7 +47,7 @@ __Level: Intermediate__
         3. Add the rule in the duplicateTodo function on the line with `todos.add(newTodoRecord);`
         4. Before triggering the rule, let's edit it so it returns what we want
         5. In the **Rules** pane on the right, click the *Edit Rule* (pen) icon next to the rule you just added. It will open up the Rule configuration as a JSON file
-        6. On line 37 in the `paths` object let's add a property `"store.rookout.locals.dump": "frame.dump()"`
+        6. On line 37 in the `paths` object let's add a property `"store.rookout.locals.dup": "frame.newTodoRecord"`
         7. On line 51 we have `processing.operations` object, let's add a new operation in the array :
         __name: send_rookout - means we are sending the information to the rookout web application__
         __path: store.rookout.locals.dump - we tell the rule what information to send__
@@ -55,7 +55,7 @@ __Level: Intermediate__
         ```
         {
             "name": "send_rookout",
-            "path": "store.rookout.locals.dump"
+            "path": "store.rookout.locals.dup"
         }
         ```
         8. Click the save button on the upper pane.
