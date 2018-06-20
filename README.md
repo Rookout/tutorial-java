@@ -54,7 +54,7 @@ make build-jar-local
 
 ```bash
 make run-local
-```
+``` g
 
 - Running the app with docker:
 
@@ -119,7 +119,7 @@ make run-docker
 ## Bug Hunt
 
 Great! You're now ready to start debugging, let's start by having some fun with our 
-[bug hunt](tutorials-bughunt-java.md) - follow instructions to try out some basic use cases.
+[bug hunt](tutorials-bughunt-java.md) - follow the instructions to try out some basic use cases.
 
 
 ## Want to learn more ?
