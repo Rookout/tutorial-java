@@ -93,7 +93,7 @@ make run-docker
     </details>
     
     
-- Open the file `src/main/java/com/rookout/tutorial/TodoController.java`
+- Open the file `src/main/java/com/rookout/tutorial/TodoController.java`    
 ![TodoController.java](/img/screenshots/java-tutorial_1.png)
 
 - Add a default (Dump Frame) rule to the `addTodo` function by clicking next the the line number in the file viewer
