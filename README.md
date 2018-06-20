@@ -54,7 +54,7 @@ make build-jar-local
 
 ```bash
 make run-local
-``` g
+```
 
 - Running the app with docker:
 
