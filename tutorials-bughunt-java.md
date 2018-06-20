@@ -50,7 +50,7 @@ __Level: Intermediate__
         6. On line 37 in the `paths` object let's add a property `"store.rookout.locals.dup": "frame.newTodoRecord"`
         7. On line 51 we have `processing.operations` object, let's add a new operation in the array :
         __name: send_rookout - means we are sending the information to the rookout web application__
-        __path: store.rookout.locals.dump - we tell the rule what information to send__
+        __path: store.rookout.locals.dup - we tell the rule what information to send__
 
         ```
         {
