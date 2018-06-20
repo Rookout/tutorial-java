@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 public class TodoController {
@@ -24,6 +22,9 @@ public class TodoController {
     public ResponseEntity<?> addTodo(@RequestBody TodoRecord newTodoRecord) {
         newTodoRecord.setId(UUID.randomUUID().toString());
         logger.info("Adding a new todo: {}", newTodoRecord);
+        // The bug in here in is for the bughunt example
+        String todoTitle = newTodoRecord.getTitle().replaceAll("[^a-zA-Z0-9]+", "");
+        newTodoRecord.setTitle(todoTitle);
         todos.add(newTodoRecord);
         Map<String, String> entities = new HashMap<>();
         entities.put("status", "ok");
@@ -59,9 +60,12 @@ public class TodoController {
     @RequestMapping(value = "/todos/clear_completed", method = RequestMethod.DELETE)
     public ResponseEntity<?> clearCompletedTodos() {
         logger.info("Removing completed todo records");
+        // The bug in here in is for the bughunt example
+        List<TodoRecord> todoStore = new ArrayList<>();
         for (TodoRecord todoRecord : todos.getAll()) {
             if (todoRecord.isCompleted()) {
-                if (todos.remove(todoRecord)) {
+                // The bug in here in is for the bughunt example
+                if (todoStore.remove(todoRecord)) {
                     logger.info("Removing Todo record: {}", todoRecord);
                 }
             }
@@ -77,8 +81,10 @@ public class TodoController {
         TodoRecord tempTodoRecord = todos.findById(todoId);
         if (tempTodoRecord != null) {
             TodoRecord newTodoRecord = new TodoRecord(tempTodoRecord);
-            newTodoRecord.setId(UUID.randomUUID().toString());
-            logger.info("Duplicating todo record: {}", tempTodoRecord);
+            // The bug in here in is for the bughunt example
+            newTodoRecord.setId(tempTodoRecord.getTitle());
+            newTodoRecord.setTitle(UUID.randomUUID().toString());
+            logger.info("Duplicating todo record: {}", newTodoRecord);
             todos.add(newTodoRecord);
         }
         Map<String, String> entities = new HashMap<>();
