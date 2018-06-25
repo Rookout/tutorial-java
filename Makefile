@@ -1,3 +1,5 @@
+PUBLISH_VERSION=$(shell echo ${NEW_VERSION} | sed 's/inner-999/1/g')
+
 build-jar-with-docker:
 	rm -rf build
 	# Build the build/libs/tutorial-V.V.V - which already includes the project sources in the jar
@@ -23,9 +25,12 @@ run-docker:
 
 
 build:
-	docker build --tag rookout/tutorial-java:latest .
+	docker build --tag rookout/tutorial-java:latest --tag rookout/tutorial-java:${PUBLISH_VERSION} .
 
-upload:
+upload-no-latest:
+	docker push rookout/tutorial-java:${PUBLISH_VERSION}
+
+upload: upload-no-latest
 	@if [ ${CIRCLE_BRANCH} = "master" ]; then \
 		docker push rookout/tutorial-java:latest; \
 	fi
