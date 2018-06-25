@@ -30,8 +30,8 @@ references:
     run:
       command: |
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-        apt-get install python-setuptools python-dev build-essential
-        easy_install pip
+        sudo apt-get install python-setuptools python-dev build-essential
+        sudo easy_install pip
         pip install --user -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
