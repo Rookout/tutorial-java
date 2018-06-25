@@ -82,7 +82,7 @@ jobs:
       - *setup_docker_layer_caching
       - run: make build-jar-local
       - *docker_login
-      - run: make build && make upload
+      - run: make build-and-upload
 
 workflows:
   version: 2

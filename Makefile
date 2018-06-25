@@ -24,7 +24,7 @@ run-docker:
 	docker-compose up
 
 
-build:
+build-img:
 	docker build --tag rookout/tutorial-java:latest --tag rookout/tutorial-java:${PUBLISH_VERSION} .
 
 upload-no-latest:
@@ -35,4 +35,4 @@ upload: upload-no-latest
 		docker push rookout/tutorial-java:latest; \
 	fi
 
-build-and-upload: build upload
+build-and-upload: build-img upload
