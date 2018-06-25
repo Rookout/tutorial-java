@@ -48,7 +48,7 @@ jobs:
 
   checkout_code_upver:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: circleci/python:2.7-jessie
     working_directory: ~/javatut
     steps:
       - *checkout_default_wd
