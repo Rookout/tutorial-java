@@ -35,7 +35,7 @@ references:
         pip install --user -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
-    run: apt install make
+    run: sudo apt install make
 
   filter_master: &filter_master
     filters:
