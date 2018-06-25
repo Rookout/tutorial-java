@@ -33,7 +33,7 @@ references:
         pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
-    run: sudo apt-get update -q && sudo apt-get install --reinstall make
+    run: apt install make
 
   filter_master: &filter_master
     filters:
@@ -48,7 +48,7 @@ jobs:
 
   checkout_code_upver:
     docker:
-      - image: python:2.7
+      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
       - *checkout_default_wd
@@ -57,8 +57,12 @@ jobs:
       - add_ssh_keys
       - run:
           command: |
-            mkdir -p /root/javatut/workspace
-            python -m rookout_build_tools.versioning.versions > /root/javatut/workspace/VERSION
+            mkdir -p ~/javatut/workspace
+            python -m rookout_build_tools.versioning.versions > ~/javatut/workspace/VERSION
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/javatut
       - persist_to_workspace:
           root: .
           paths:
@@ -69,6 +73,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
+      - *load_cache
       - *setup_workspace
       - *load_version
       - *setup_make
