@@ -59,10 +59,6 @@ jobs:
           command: |
             mkdir -p /root/javatut/workspace
             python -m rookout_build_tools.versioning.versions > /root/javatut/workspace/VERSION
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/javatut
       - persist_to_workspace:
           root: .
           paths:
@@ -73,7 +69,6 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/javatut
     steps:
-      - *load_cache
       - *setup_workspace
       - *load_version
       - *setup_make
