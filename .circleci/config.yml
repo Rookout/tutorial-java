@@ -29,11 +29,10 @@ references:
   setup_build_tools: &setup_build_tools
     run:
       command: |
-        sudo su -
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
         apt-get install python-setuptools python-dev build-essential
         easy_install pip
-        pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
+        pip install --user -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
     run: apt install make
