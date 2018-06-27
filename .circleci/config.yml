@@ -57,10 +57,8 @@ jobs:
       - *setup_workspace
       - *setup_build_tools
       - add_ssh_keys
-      - run:
-          command: |
-            mkdir -p ~/javatut/workspace
-            rbt version get-next > ~/javatut/workspace/VERSION
+      - run: mkdir -p ~/javatut/workspace
+      - run: python ~/javatut/src/rookout-build-tools/rbt.py version get-next > ~/javatut/workspace/VERSION
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
