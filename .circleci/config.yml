@@ -60,7 +60,7 @@ jobs:
       - run:
           command: |
             mkdir -p ~/javatut/workspace
-            python -m rookout_build_tools.versioning.versions > ~/javatut/workspace/VERSION
+            rbt version get-next > ~/javatut/workspace/VERSION
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
