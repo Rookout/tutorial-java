@@ -103,7 +103,7 @@ make run-docker
     ![Valid Rule](/img/screenshots/java-tutorial_3.png)
     - **If this is not the case, [check our troubleshooting guide](https://docs.rookout.com/docs/troubleshooting-rules.html)**
      
-- Go the the app page - [http://localhost:8080/](http://localhost:8080/) and add try to add a task to the todo list
+- Go the the app page - [http://localhost:8089/](http://localhost:8089/) and add try to add a task to the todo list
 
 ![Add Task](/img/screenshots/java-tutorial_4.png)
 
