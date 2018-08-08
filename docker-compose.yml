@@ -9,7 +9,7 @@ services:
     environment:
       - ROOKOUT_AGENT_HOST=rookout-python-agent
     ports:
-      - "8080:8080"
+      - "8089:8089"
     links:
       - rookout-python-agent
 
