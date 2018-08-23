@@ -92,7 +92,7 @@ jobs:
       - run: make build-and-upload
 
 
-    deploy_demo:
+  deploy_demo:
     docker:
       - image: google/cloud-sdk:latest
     working_directory: ~/demo
