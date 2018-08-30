@@ -39,12 +39,12 @@ references:
     run:
       command: |
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-        sudo apt-get install python-setuptools python-dev build-essential
-        sudo easy_install pip
+        apt-get install python-setuptools python-dev build-essential
+        easy_install pip
         pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
-    run: sudo apt install make
+    run: apt install -y make
 
   filter_master: &filter_master
     filters:
@@ -104,7 +104,7 @@ jobs:
       - *auth_google
       - *load_version
       - run: git clone git@github.com:Rookout/deployment-demo
-      - run: apt install make -y
+      - *setup_make
       - run: export GOOGLE_APPLICATION_CREDENTIALS=/root/demo/gcp-key.json && cd deployment-demo && export env=staging && make deploy-demo
       - run: export GOOGLE_APPLICATION_CREDENTIALS=/root/demo/gcp-key.json && cd deployment-demo && export env=production && make deploy-demo
 
