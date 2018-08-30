@@ -41,7 +41,7 @@ references:
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
         sudo apt-get install python-setuptools python-dev build-essential
         sudo easy_install pip
-        pip install --user -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
+        pip install -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
 
   setup_make: &setup_make
     run: sudo apt install make
@@ -59,7 +59,7 @@ jobs:
 
   checkout_code_upver:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: google/cloud-sdk:latest
     working_directory: ~/demo
     steps:
       - *checkout_default_wd
@@ -79,7 +79,7 @@ jobs:
 
   build_and_push_demo_image:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: openjdk:8-jdk-browsers
     working_directory: ~/demo
     steps:
       - *load_cache
