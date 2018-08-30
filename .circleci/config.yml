@@ -41,7 +41,8 @@ references:
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
         sudo apt-get install python-setuptools python-dev build-essential
         sudo easy_install pip
-        pip install --user -e git+ssh://git@github.com/Rookout/build_tools.git#egg=rookout_build_tools
+        git clone git@github.com:Rookout/build_tools.git
+        python build_tools/setup.py install --user
 
   setup_make: &setup_make
     run: sudo apt install make
@@ -67,7 +68,7 @@ jobs:
       - *setup_build_tools
       - add_ssh_keys
       - run: mkdir -p ~/demo/workspace
-      - run: python ~/demo/src/rookout-build-tools/rbt.py version get-next > ~/demo/workspace/VERSION
+      - run: python ~/demo/build_tools/rbt.py version get-next > ~/demo/workspace/VERSION
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
