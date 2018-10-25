@@ -16,12 +16,11 @@ this is the official [rookout][rookout-getting-started] java tutorial
 
 ## Prerequisites
 
-1. Docker - https://www.docker.com/get-docker
-2. java 8
+1. Optional - Docker - https://www.docker.com/get-docker
+2. Java 8
 3. gradle - https://gradle.org/install/ (you can skip it and use only docker)
 
 ## Installation
-**Note: you need `docker` for the agent**
 
 1. Clone the tutorial repository
 
@@ -33,27 +32,21 @@ cd tutorial-java
 2. Set your agent token in an ENV variable 
 
 ```bash
-export ROOKOUT_TOKEN=YOUR_TOKEN_IN_HERE
+export ROOKOUT_TOKEN=[Your Rookout Token]
  ```
 
-3. Build the app then run the agent & app
+3. Build and run the app
 
-- Options 1 - Building the app without installing gradle:
+- Options 1 - Build and run the app using docker without installing gradle:
 
 ```bash
-make build-jar-with-docker
+make build-jar-with-docker run-docker
 ```
 
-- Options 2 - Building the app with gradle:
+- Options 2 - Building the app without docker (requires gradle):
 
 ```bash
-make build-jar-local
-```
-
-- Running the app with docker:
-
-```bash
-make run-docker
+make build-jar-local run-local
 ```
 
 ## Usage
@@ -79,10 +72,8 @@ make run-docker
             - Click View Repository
         - Local FileSystem - Server
             - Click on Setup Server
-            - Choose a supported HTTP Server (Node.js)
-            - Leave the default port `8000` or choose your own
-            - Run your local server e.g. `simple-https -p 8000` in the right directory
-            - Click on Connect to Server
+            - Choose a supported HTTP Server
+            - Follow the on-screen instructions
     </p>
     </details>
     
@@ -133,4 +124,4 @@ Great! You're now ready to start debugging, let's start by having some fun with 
 [license-image]: https://img.shields.io/badge/License-Apache%202.0-blue.svg
 [rookout-app-url]: https://app.rookout.com/
 [deployment-examples]: https://github.com/Rookout/deployment-examples
-[version-badge]: https://badge.fury.io/gh/rookout%2Ftryme-tutorial.svg
+[version-badge]: https://badge.fury.io/gh/rookout%2Ftutorial-java.svg
