@@ -1,35 +1,38 @@
-# Rookout official tutorial for using java 
+# Rookout tutorial for debugging Java applications
 
 [![CircleCI](https://circleci.com/gh/Rookout/tutorial-java/tree/master.svg?style=svg&circle-token=67fb4681a9af2ce964fd715e45d4c2eafaa01503)](https://circleci.com/gh/Rookout/tutorial-java/tree/master)
 [![License][license-image]][license-url]
 [![Docs][docs-image]][docs-url]
 [![GitHub version][version-badge]](https://github.com/Rookout/tutorial-java)
 
-this is the official [rookout][rookout-getting-started] java tutorial
+A sample app for debugging Java using [Rookout][rookout-getting-started].
 
-- [Signup][rookout-signup]
-- [Documentation][docs-url]
+## Helpful links:
+
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Setup](#setup)
 - [Usage](#usage)
 - [License](#license)
+- [Sign up to Rookout][rookout-signup]
+- [Online Documentation][docs-url]
 
 ## Prerequisites
 
-1. Optional - Docker - https://www.docker.com/get-docker
-2. Java 8
-3. gradle - https://gradle.org/install/ (you can skip it and use only docker)
 
-## Installation
+1. Java 8
+2. Gradle (optional. you may use Docker instead) - https://gradle.org/install/ 
+3. Docker (optional) - https://www.docker.com/get-docker
 
-1. Clone the tutorial repository
+## Setup
+
+1. Clone the sample app from this repository:
 
 ```bash
 git clone https://github.com/Rookout/tutorial-java.git
 cd tutorial-java
 ``` 
 
-2. Set your agent token in an ENV variable 
+2. Set your agent token as an environment variable (for Windows, use ***set*** instead of ***export)
 
 ```bash
 export ROOKOUT_TOKEN=[Your Rookout Token]
@@ -37,21 +40,21 @@ export ROOKOUT_TOKEN=[Your Rookout Token]
 
 3. Build and run the app
 
-- Options 1 - Build and run the app using docker without installing gradle:
-
-```bash
-make build-jar-with-docker run-docker
-```
-
-- Options 2 - Building the app without docker (requires gradle):
+Build and run the app using Gradle:
 
 ```bash
 make build-jar-local run-local
 ```
 
+- Optional - Build and run the app using docker (Gradle is not required)
+
+```bash
+make build-jar-with-docker run-docker
+```
+
 ## Usage
 
-- After running the app & agent go to [https://app.rookout.com/][rookout-app-url] and **Log In**
+- Log in to [the Rookout IDE][rookout-app-url].
 - Add the source code according to the instructions using the left pane **Source View**
 
     <details>
