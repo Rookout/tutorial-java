@@ -43,13 +43,15 @@ export ROOKOUT_TOKEN=[Your Rookout Token]
 Build and run the app using Gradle:
 
 ```bash
-make build-jar-local run-local
+./gradlew bootJar run
 ```
 
-- Optional - Build and run the app using docker (Gradle is not required)
+- Optional - Build and run the app using docker (Java & Gradle are not required)
 
 ```bash
-make build-jar-with-docker run-docker
+docker run --rm -v "$(shell pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
+docker build . -t tutorial-java
+docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" tutorial-java
 ```
 
 ## Usage
