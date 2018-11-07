@@ -46,12 +46,10 @@ Build and run the app using Gradle:
 ./gradlew bootJar run
 ```
 
-- Optional - Build and run the app using docker (Java & Gradle are not required)
+- Optional - Run the app using docker (Java & Gradle are not required)
 
 ```bash
-docker run --rm -v "$(shell pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
-docker build . -t tutorial-java
-docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" tutorial-java
+docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial-java
 ```
 
 ## Usage
