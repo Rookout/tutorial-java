@@ -6,7 +6,6 @@ build-jar-with-docker:
 	docker run --rm -v "$(shell pwd)":/home/gradle/project -w /home/gradle/project gradle:4.8.0-jdk8-alpine gradle -i bootJar
 
 build-jar-local:
-	gradle -i clean
 	# Build the build/libs/tutorial-V.V.V - which already includes the project sources in the jar
 	gradle -i bootJar
 
