@@ -20,8 +20,7 @@ A sample app for debugging Java using [Rookout][rookout-getting-started].
 
 
 1. Java 8
-2. Gradle (optional. you may use Docker instead) - https://gradle.org/install/ 
-3. Docker (optional) - https://www.docker.com/get-docker
+2. Docker (optional) - https://www.docker.com/get-docker
 
 ## Setup
 
