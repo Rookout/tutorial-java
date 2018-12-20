@@ -31,7 +31,7 @@ git clone https://github.com/Rookout/tutorial-java.git
 cd tutorial-java
 ``` 
 
-2. Set your agent token as an environment variable (for Windows, use ***set*** instead of ***export)
+2. Set your Rookout Token as an environment variable (for Windows, use ***set*** instead of ***export)
 
 ```bash
 export ROOKOUT_TOKEN=[Your Rookout Token]
@@ -83,12 +83,12 @@ docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial
 - Open the file `src/main/java/com/rookout/tutorial/TodoController.java`    
 ![TodoController.java](/img/screenshots/java-tutorial_1.png)
 
-- Add a default (Dump Frame) rule to the `addTodo` function by clicking next the the line number in the file viewer
-![Dumpframe Rule](/img/screenshots/java-tutorial_2.png)
+- Add a Snapshot Breakpoint to the `addTodo` function by clicking next the the line number in the file viewer
+![Snapshot Breakpoint](/img/screenshots/java-tutorial_2.png)
 
-- Looking at the right-hand pane **Rules**, you will see the rule and the line number where you added it - it should be <span style="color: #73CD1F;">**GREEN**</span>   
-    ![Valid Rule](/img/screenshots/java-tutorial_3.png)
-    - **If this is not the case, [check our troubleshooting guide](https://docs.rookout.com/docs/troubleshooting-rules.html)**
+- Looking at the right-hand pane **Breakpoints**, you will see the Breakpoint and the line number where you added it - it should be <span style="color: #73CD1F;">**GREEN**</span>   
+    ![Valid Breakpoint](/img/screenshots/java-tutorial_3.png)
+    - **If this is not the case, [check our troubleshooting guide](https://docs.rookout.com/docs/breakpoints-status.html)**
      
 - Go the the app page - [http://localhost:8080/](http://localhost:8080/) and add try to add a task to the todo list
 
@@ -98,10 +98,10 @@ docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial
 
 ![Message pane](/img/screenshots/java-tutorial_5.png)
 
-## Rule Common Issues
+## Common Pitfalls
 
-- Rule status is RED -- Hash mismatch. It means the file used in the server is not the same file used from github/local server in app.rookout.com
-- Rule status is GRAY -- No rook connected to the agent. Make sure you have inserted the token in the right place and that connection is made properly.
+- Breakpoint status is RED -- Hash mismatch. It means the file used in the server is not the same file used from github/local server in app.rookout.com
+- Breakpoint status is GRAY -- No app connected. Make sure you have inserted the Rookout Token in the right place and that connection is made properly.
 
 ## Bug Hunt
 
