@@ -118,7 +118,7 @@ Great! You're now ready to start debugging, let's start by having some fun with 
 ## License
 [APACHE 2](LICENSE)
 
-[rookout-getting-started]: https://docs.rookout.com/docs/introduction.html
+[rookout-getting-started]: https://docs.rookout.com/docs/quick-start.html
 [rookout-signup]: https://www.rookout.com/trial/
 [license-url]: LICENSE
 [docs-image]: https://img.shields.io/badge/docs-latest-blue.svg
