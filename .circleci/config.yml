@@ -39,7 +39,7 @@ references:
     run:
       command: |
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-        sudo apt-get install python-setuptools python-dev build-essential libpq-dev libffi6 libffi-dev openssl-dev
+        sudo apt-get install python-setuptools python-dev build-essential libpq-dev libffi6 libffi-dev libssl-dev
         sudo easy_install pip
         git clone git@github.com:Rookout/build_tools.git
         pip install -r build_tools/requirements.txt --user
