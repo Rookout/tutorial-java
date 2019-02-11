@@ -128,11 +128,11 @@ jobs:
 
   notify_slack:
     docker:
-        - image: google/cloud-sdk:latest
+        - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/demo
     steps:
       - *setup_workspace
-      - run: rbt notify deployment demo-deployed
+      - run: python ~/demo/build_tools/rbt.py notify deployment demo-deployed
 
 
 workflows:
