@@ -132,7 +132,7 @@ jobs:
         - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/demo
     steps:
-      - *setup_workspace
+      - *setup_build_tools
       - run: python ~/demo/build_tools/rbt.py notify deployment demo-deployed
 
 
