@@ -126,6 +126,15 @@ jobs:
       - run: curl 'http://java.rookout-demo.com/'
       - run: curl 'http://nodejs.rookout-demo.com/'
 
+  notify_slack:
+    docker:
+        - image: google/cloud-sdk:latest
+    working_directory: ~/demo
+    steps:
+      - *setup_workspace
+      - run: rbt notify deployment demo-deployed
+
+
 workflows:
   version: 2
   deploy-pipeline:
