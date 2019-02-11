@@ -152,3 +152,7 @@ workflows:
           requires:
             - deploy_demo
           <<: *filter_master
+      - notify_slack:
+          requires:
+            - test_demo_servers_up
+          <<: *filter_master
