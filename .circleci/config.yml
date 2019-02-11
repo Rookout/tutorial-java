@@ -133,7 +133,7 @@ jobs:
     working_directory: ~/demo
     steps:
       - *setup_build_tools
-      - run: python ~/demo/build_tools/rbt.py notify deployment demo-deployed
+      - run: python ~/demo/build_tools/rbt.py notify deployment -t demo-deployed
 
 
 workflows:
