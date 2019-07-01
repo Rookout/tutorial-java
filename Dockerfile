@@ -6,5 +6,5 @@ RUN mkdir -p /app/
 COPY build/libs/tutorial-1.0.0.jar  /app/tutorial-1.0.0.jar
 
 # Download the Rookout agent jar
-RUN wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=0.1.82" -O rook.jar
+RUN wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=0.1.83" -O rook.jar
 ENTRYPOINT ["java", "-javaagent:rook.jar", "-jar", "/app/tutorial-1.0.0.jar"]
