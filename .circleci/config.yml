@@ -91,7 +91,6 @@ jobs:
       - *load_version
       - *setup_make
       - *setup_docker_layer_caching
-      - run: make build-jar-local
       - *docker_login
       - run: make build-and-upload
 
