@@ -1,10 +1,16 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk as build
+RUN mkdir -p /app
+WORKDIR /app
+ADD build.gradle /app
+ADD . /app
+RUN ./gradlew -i bootJar downloadRook
 
-RUN mkdir -p /app/
+# ---------------------------------------------------------- #
 
+FROM openjdk:8-jdk as release
+RUN mkdir -p /app
 # Copy the jar image (which already include resoures)
-COPY build/libs/tutorial-1.0.0.jar  /app/tutorial-1.0.0.jar
-
-# Download the Rookout agent jar
-RUN wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=0.1.86" -O rook.jar
+COPY --from=build /app/build/libs/tutorial-1.0.0.jar  /app/tutorial-1.0.0.jar
+# Copy the rook.jar downloaded in build phase
+COPY --from=build /app/rook.jar rook.jar
 ENTRYPOINT ["java", "-javaagent:rook.jar", "-jar", "/app/tutorial-1.0.0.jar"]
