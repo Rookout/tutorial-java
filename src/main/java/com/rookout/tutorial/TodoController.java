@@ -23,7 +23,7 @@ public class TodoController {
         newTodoRecord.setId(UUID.randomUUID().toString());
         logger.info("Adding a new todo: {}", newTodoRecord);
         // The bug in here in is for the bughunt example
-        String todoTitle = newTodoRecord.getTitle().replaceAll("[^a-zA-Z0-9]+", "");
+        String todoTitle = newTodoRecord.getTitle().replaceAll("[^a-zA-Z0-9\\s]+", "");
         newTodoRecord.setTitle(todoTitle);
         todos.add(newTodoRecord);
         Map<String, String> entities = new HashMap<>();
