@@ -83,7 +83,7 @@ docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial
 - Open the file `src/main/java/com/rookout/tutorial/TodoController.java`    
 ![TodoController.java](/img/screenshots/java-tutorial_1.png)
 
-- Add a Breakpoint to the `addTodo` function by clicking next the the line number in the file viewer
+- Add a Breakpoint to the `addTodo` function by clicking next the line number in the file viewer
 ![Snapshot Breakpoint](/img/screenshots/java-tutorial_2.png)
 
 - Click on the **Breakpoints** tab in the left pane, and you will see the Breakpoint and the line number where you added it - it should be solid purple.    
