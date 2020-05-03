@@ -1,5 +1,8 @@
 PUBLISH_VERSION=$(shell echo ${NEW_VERSION} | sed 's/inner-999/1/g')
 
+GIT_COMMIT=$(shell git rev-parse HEAD)
+GIT_ORIGIN=$(shell git config --get remote.origin.url)
+
 build-jar-with-docker:
 	rm -rf build
 	# Build the build/libs/tutorial-V.V.V - which already includes the project sources in the jar
@@ -16,7 +19,7 @@ run-local:
 	java  -javaagent:rook.jar -jar build/libs/tutorial-1.0.0.jar
 
 build-img:
-	docker build --tag rookout/tutorial-java:latest --tag rookout/tutorial-java:${PUBLISH_VERSION} .
+	docker build --tag rookout/tutorial-java:latest --tag rookout/tutorial-java:${PUBLISH_VERSION} --build-arg GIT_COMMIT=${GIT_COMMIT} --build-arg GIT_ORIGIN=${GIT_ORIGIN} .
 
 upload-no-latest:
 	docker push rookout/tutorial-java:${PUBLISH_VERSION}

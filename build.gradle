@@ -10,11 +10,30 @@ buildscript {
     }
 }
 
+
+plugins {
+    id 'com.palantir.git-version' version '0.12.3'
+}
+
+
 apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.git-version'
+
+version gitVersion()
+
+
+def details = versionDetails()
+
+println "last tag          : ${details.lastTag}"
+println "commit distance   : ${details.commitDistance}"
+println "hash              : ${details.gitHashFull}"
+println "branch name       : ${details.branchName}"
+println "is clean tag      : ${details.isCleanTag}"
+println "details          : ${details}"
 
 mainClassName = "com.rookout.tutorial.TutorialApplication"
 
@@ -47,6 +66,7 @@ class Download extends DefaultTask {
     }
 }
 
+
 task downloadRookout(type: Download) {
     sourceUrl = "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=0.1.114"
     target = new File('rook.jar')
@@ -55,6 +75,9 @@ task downloadRookout(type: Download) {
 // bootJar is added by spring + java plugin, it creates a fat jar, we add the source files
 // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#reacting-to-other-plugins-java
 bootJar {
+    manifest {        
+        attributes('ROOKOUT_COMMIT': details.gitHashFull)        
+    }
     from sourceSets.main.allSource
 }
 
