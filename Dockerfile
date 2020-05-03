@@ -1,4 +1,11 @@
 FROM openjdk:8-jdk as build
+
+ARG GIT_COMMIT=unspecified
+ENV ROOKOUT_COMMIT=$GIT_COMMIT
+
+ARG GIT_ORIGIN=unspecified
+ENV ROOKOUT_REMOTE_ORIGIN=$GIT_ORIGIN
+
 RUN mkdir -p /app
 WORKDIR /app
 ADD build.gradle /app
