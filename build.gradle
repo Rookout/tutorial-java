@@ -23,17 +23,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.palantir.git-version'
 
-version gitVersion()
-
-
 def details = versionDetails()
-
-println "last tag          : ${details.lastTag}"
-println "commit distance   : ${details.commitDistance}"
-println "hash              : ${details.gitHashFull}"
-println "branch name       : ${details.branchName}"
-println "is clean tag      : ${details.isCleanTag}"
-println "details          : ${details}"
 
 mainClassName = "com.rookout.tutorial.TutorialApplication"
 
