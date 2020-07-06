@@ -1,10 +1,15 @@
 package com.rookout.tutorial;
 
+import io.opentracing.Span;
+import io.opentracing.util.GlobalTracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.opentracing.mock.MockTracer;
+import io.opentracing.mock.MockSpan;
+import io.opentracing.tag.Tags;
 
 import java.util.*;
 
@@ -18,8 +23,27 @@ public class TodoController {
         return todos.getAll();
     }
 
+    private void doSomething(){
+        logger.info("doSomethingdoSomethingdoSomethingdoSomethingdoSomethingdoSomething");
+    }
+
     @RequestMapping(value = "/todos", method = RequestMethod.POST)
     public ResponseEntity<?> addTodo(@RequestBody TodoRecord newTodoRecord) {
+
+        MockTracer tracer = new MockTracer();
+        GlobalTracer.registerIfAbsent(tracer);
+        
+        // Create a new Span, representing an operation.
+        MockSpan span = tracer.buildSpan("foo").start();
+        tracer.activateSpan(span);
+        // Add a tag to the Span.
+        span.setTag(Tags.COMPONENT, "my-own-application");
+        doSomething();
+
+        // Finish the Span.
+        span.finish();
+
+
         newTodoRecord.setId(UUID.randomUUID().toString());
         logger.info("Adding a new todo: {}", newTodoRecord);
         // The bug in here in is for the bughunt example
