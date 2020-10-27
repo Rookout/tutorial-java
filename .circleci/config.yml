@@ -40,7 +40,7 @@ references:
       command: |
         mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
         sudo apt update && sudo apt-get install python3 python3-setuptools python3-dev build-essential libpq-dev libffi6 libffi-dev libssl-dev python3-pip
-        python3 -m pip install --upgrade --user setuptools
+        python3 -m pip install --upgrade --user setuptools six
         git clone git@github.com:Rookout/build_tools.git
         python3 -m pip install -r build_tools/requirements.txt --user
         python3 build_tools/setup.py install --user
