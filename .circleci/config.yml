@@ -122,11 +122,13 @@ jobs:
       - run: curl 'http://staging.python.rookout-demo.com/'
       - run: curl 'http://staging.java.rookout-demo.com/'
       - run: curl 'http://staging.nodejs.rookout-demo.com/'
+      - run: curl 'http://staging.ruby.rookout-demo.com/'
       - run: sleep 15 && echo "Checking Production..."
       - run: curl 'http://machina.rookout-demo.com/account/register'
       - run: curl 'http://python.rookout-demo.com/'
       - run: curl 'http://java.rookout-demo.com/'
       - run: curl 'http://nodejs.rookout-demo.com/'
+      - run: curl 'http://ruby.rookout-demo.com/'
 
   notify_slack:
     docker:
