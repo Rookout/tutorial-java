@@ -41,9 +41,9 @@ dependencies {
 
     // Specific dependencies for fixing different vulnerabilities
     compile("org.hibernate.validator:hibernate-validator:6.1.3.Final")
-    compile("org.springframework:spring-webmvc:5.2.6.RELEASE")
-    compile("org.springframework:spring-web:5.2.6.RELEASE")
-    compile("org.apache.tomcat.embed:tomcat-embed-core:9.0.37")
+    compile("org.springframework:spring-webmvc:5.2.9.RELEASE")
+    compile("org.springframework:spring-web:5.2.9.RELEASE")
+    compile("org.apache.tomcat.embed:tomcat-embed-core:9.0.40")
     compile("org.yaml:snakeyaml:1.26")
     // tracing support
     compile group: 'io.opentracing.contrib', name: 'opentracing-spring-jaeger-web-starter', version: '3.1.2'
