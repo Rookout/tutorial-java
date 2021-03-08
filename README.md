@@ -21,6 +21,7 @@ A sample app for debugging Java using [Rookout][rookout-getting-started].
 
 1. Java 8
 2. Docker (optional) - https://www.docker.com/get-docker
+3. Jaegar Agent - https://www.jaegertracing.io/docs/getting-started/
 
 ## Setup
 
@@ -37,7 +38,16 @@ cd tutorial-java
 export ROOKOUT_TOKEN=[Your Rookout Token]
  ```
 
-3. Build and run the app
+3. This application uses Jaegar for tracing and requires the Jaegar agent be running before starting the application. The simplest approach to setting this up would be to start the All-In-One pre-built Docker image as described here: https://www.jaegertracing.io/docs/1.22/getting-started/#all-in-one.
+
+4. After starting Jaegar, ensure that the file `src/main/resources/application.properties` is updated with the host and port of your Jaegar agent. For example:
+
+```bash
+opentracing.jaeger.udp-sender.host=localhost
+opentracing.jaeger.udp-sender.port=6831
+```
+
+5. Build and run the app
 
 Build and run the app using Gradle:
 
