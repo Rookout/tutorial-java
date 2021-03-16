@@ -64,6 +64,7 @@ docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial
 ## Usage
 
 - Log in to [the Rookout IDE][rookout-app-url].
+- Select the server(s) to debug based on the labels in the server selection screen
 - Add the source code according to the instructions using the left pane **Source View**
 
     <details>
@@ -110,8 +111,9 @@ docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial
 
 ## Common Pitfalls
 
-- Breakpoint status is RED -- Hash mismatch. It means the file used in the server is not the same file used from github/local server in app.rookout.com
-- Breakpoint status is GRAY -- No app connected. Make sure you have inserted the Rookout Token in the right place and that connection is made properly.
+- Breakpoint status is pending (hollow with purple outline) -- Connection to the app was not able to be established. Make sure that you inserted the Rookout Token in the right place and that the SDK was properly installed.
+- Breakpoing status is disabled (solid grey) -- The breakpoint was disabled from collecting more data due to the limits being hit.
+- Brekapoint error -- something went wrong. Check the breakpoint status to get more information on the error type, and for more information go to our [breakpoint status guide][https://docs.rookout.com/docs/breakpoints-status/].
 
 ## Bug Hunt
 
