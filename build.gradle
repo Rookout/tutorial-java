@@ -52,7 +52,6 @@ dependencies {
     testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 }
 
-
 class Download extends DefaultTask {
     @Input
     String sourceUrl
