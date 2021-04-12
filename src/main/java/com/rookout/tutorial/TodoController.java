@@ -12,6 +12,7 @@ import java.util.*;
 public class TodoController {
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
     private TodoStorage todos = TodoStorage.getInstance();
+    private TodoExtraClass extraClass = TodoExtraClass.getInstance();
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public TodoRecord[] getTodos() {
