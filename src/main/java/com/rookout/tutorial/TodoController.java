@@ -12,6 +12,7 @@ import java.util.*;
 public class TodoController {
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
     private TodoStorage todos = TodoStorage.getInstance();
+    private final TracingHandler tracingHandler = new TracingHandler();
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public TodoRecord[] getTodos() {
@@ -58,7 +59,8 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/todos/clear_completed", method = RequestMethod.DELETE)
-    public ResponseEntity<?> clearCompletedTodos() {
+    public ResponseEntity<?> clearCompletedTodos() throws InterruptedException {
+        tracingHandler.createChildSpansActivity();
         logger.info("Removing completed todo records");
         // The bug in here in is for the bughunt example
         List<TodoRecord> todoStore = new ArrayList<>();
