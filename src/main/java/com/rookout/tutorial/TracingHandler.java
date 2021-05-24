@@ -14,9 +14,9 @@ public class TracingHandler {
     }
 
     public void createChildSpansActivity() throws InterruptedException {
-        this.openAndCloseChildSpan("sub-operation1");
-        this.openAndCloseChildSpan("sub-operation2");
-        this.openAndCloseChildSpan("sub-operation3");
+        this.openAndCloseChildSpan("getCompletedTasks");
+        this.openAndCloseChildSpan("deleteCompletedTasks");
+        this.openAndCloseChildSpan("updateView");
     }
 
     public void openAndCloseChildSpan(String operationName) throws InterruptedException {
