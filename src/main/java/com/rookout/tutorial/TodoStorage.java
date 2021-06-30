@@ -1,17 +1,12 @@
 package com.rookout.tutorial;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Tdo Storage (in memory list that implements Interface TodoRecord Storage).
  */
 public class TodoStorage implements ITodoStorage {
     private ArrayList<TodoRecord> todoStorage;
-    public static final Logger logger = LoggerFactory.getLogger(TodoStorage.class);
 
     private static TodoStorage instance = new TodoStorage();
 
