@@ -10,7 +10,7 @@ import java.util.*;
 
 @RestController
 public class TodoController {
-    Logger logger = LoggerFactory.getLogger(TodoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
     private TodoStorage todos = TodoStorage.getInstance();
     private final TracingHandler tracingHandler = new TracingHandler();
 
