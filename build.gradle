@@ -44,7 +44,9 @@ dependencies {
     compile("org.springframework:spring-webmvc:5.2.9.RELEASE")
     compile("org.springframework:spring-web:5.2.9.RELEASE")
     compile("org.apache.tomcat.embed:tomcat-embed-core:9.0.40")
-    compile("org.apache.logging.log4j:log4j-core:2.13.3")
+    compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("org.slf4j:slf4j-api:1.7.30")
+
     compile("org.yaml:snakeyaml:1.26")
     // tracing support
     compile group: 'io.opentracing.contrib', name: 'opentracing-spring-jaeger-web-starter', version: '3.1.2'
