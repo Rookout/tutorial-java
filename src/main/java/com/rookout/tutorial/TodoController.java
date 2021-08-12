@@ -62,8 +62,11 @@ public class TodoController {
     public ResponseEntity<?> clearCompletedTodos() throws InterruptedException {
         tracingHandler.createChildSpansActivity();
         logger.info("Removing completed todo records");
+        logger.debug("reading todoStore from database");
+        logger.debug("SELECT * FROM todos WHERE status='conpleted'");
         // The bug in here in is for the bughunt example
         List<TodoRecord> todoStore = new ArrayList<>();
+        logger.debug("todoStore size is {}", todoStore.size());
         for (TodoRecord todoRecord : todos.getAll()) {
             if (todoRecord.isCompleted()) {
                 // The bug in here in is for the bughunt example
@@ -72,6 +75,7 @@ public class TodoController {
                 }
             }
         }
+        logger.error("failed to delete completed todos");
         Map<String, String> entities = new HashMap<>();
         entities.put("status", "ok");
         return new ResponseEntity<>(entities, HttpStatus.OK);
