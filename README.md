@@ -46,6 +46,7 @@ export ROOKOUT_TOKEN=[Your Rookout Token]
 opentracing.jaeger.udp-sender.host=localhost
 opentracing.jaeger.udp-sender.port=6831
 ```
+- You can omit using Jaeger and remove the `opentracing.jaeger.udp-sender.host` and `opentracing.jaeger.udp-sender.port` options from the `src/main/resources/application.properties` file.
 
 5. Build and run the app
 
@@ -59,6 +60,12 @@ Build and run the app using Gradle:
 
 ```bash
 docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial-java
+```
+
+- No Jaeger? If you just want to take the docker image for a spin without Jaeger then you can disable it by adding the `--opentracing.jaeger.enabled=false` argument:
+
+```bash
+docker run -p 8080:8080 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/tutorial-java --opentracing.jaeger.enabled=false
 ```
 
 ## Usage
