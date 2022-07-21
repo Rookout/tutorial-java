@@ -61,7 +61,7 @@ jobs:
 
   checkout_code_upver:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: cimg/openjdk:8.0-browsers
     working_directory: ~/demo
     steps:
       - *checkout_default_wd
@@ -82,7 +82,7 @@ jobs:
 
   build_and_push_demo_image:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: cimg/openjdk:8.0-browsers
     working_directory: ~/demo
     steps:
       - *load_cache
@@ -132,7 +132,7 @@ jobs:
 
   notify_slack:
     docker:
-        - image: circleci/openjdk:8-jdk-browsers
+        - image: cimg/openjdk:8.0-browsers
     working_directory: ~/demo
     steps:
       - *setup_build_tools
