@@ -16,13 +16,18 @@ public class TodoController {
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public TodoRecord[] getTodos() {
+        for (int i = 0; i < 10000; ++i) {
+            logger.info("aaaaaaaaa");
+        }
         return todos.getAll();
     }
 
     @RequestMapping(value = "/todos", method = RequestMethod.POST)
     public ResponseEntity<?> addTodo(@RequestBody TodoRecord newTodoRecord) {
         newTodoRecord.setId(UUID.randomUUID().toString());
-        logger.info("Adding a new todo: {}", newTodoRecord);
+        for (int i = 0; i < 10000; ++i) {
+            logger.info("Adding a new todo: {}", newTodoRecord);
+        }
         // The bug in here in is for the bughunt example
         String todoTitle = newTodoRecord.getTitle().replaceAll("[^a-zA-Z0-9\\s]+", "");
         newTodoRecord.setTitle(todoTitle);
