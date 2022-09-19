@@ -164,7 +164,7 @@ workflows:
           <<: *filter_master
       - test_demo_servers_up:
           requires:
-            - deploy_demo
+            - deploy_demo_argo
           <<: *filter_master
       - notify_slack:
           requires:
