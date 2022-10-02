@@ -372,6 +372,9 @@ html .clear-completed:active {
 .info a:hover {
 	text-decoration: underline;
 }
+.clear-all-items {
+	cursor: pointer;
+}
 
 /*
 	Hack to remove background from Mobile Safari.
