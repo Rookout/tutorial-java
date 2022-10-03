@@ -44,6 +44,15 @@ public class TodoController {
         entities.put("status", "ok");
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/todos/remove_all", method = RequestMethod.DELETE)
+    public ResponseEntity<?>deleteAll() {
+        logger.info("Removing all items");
+        todos.remove_all();
+         Map<String, String> entities = new HashMap<>();
+        entities.put("status", "ok");
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/todos/{todoId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteTodo(@PathVariable("todoId") String todoId) {
@@ -58,6 +67,7 @@ public class TodoController {
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
+    
     @RequestMapping(value = "/todos/clear_completed", method = RequestMethod.DELETE)
     public ResponseEntity<?> clearCompletedTodos() throws InterruptedException {
         tracingHandler.createChildSpansActivity();
