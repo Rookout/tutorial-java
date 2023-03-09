@@ -35,6 +35,7 @@ public class TodoController {
     @RequestMapping(value = "/todos", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTodo(@RequestBody TodoRecord updatingTodoRecord) {
         TodoRecord tempTodoRecord = todos.findById(updatingTodoRecord.getId());
+        System.out.println("something!");
         if (tempTodoRecord != null) {
             tempTodoRecord.setTitle(updatingTodoRecord.getTitle());
             tempTodoRecord.setCompleted(updatingTodoRecord.isCompleted());
