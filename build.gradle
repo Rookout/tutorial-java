@@ -70,7 +70,7 @@ class Download extends DefaultTask {
 
 
 task downloadRookout(type: Download) {
-    sourceUrl = "https://oss.sonatype.org/service/local/repositories/releases/content/com/rookout/rook/0.1.261/rook-0.1.261.jar"
+    sourceUrl = "https://oss.sonatype.org/service/local/repositories/releases/content/com/rookout/rook/0.1.262/rook-0.1.262.jar"
     target = new File('rook.jar')
 }
 
